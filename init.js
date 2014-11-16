@@ -51,7 +51,7 @@ window.onload = function()
         {id: 'background', src: 'resources/countryside.mp3'},
         {id: 'gameOverSound', src: 'resources/gameOver.mp3'},
         {id: 'deathSound', src: 'resources/die.mp3'},
-        {id: 'batSpritesheet', src: 'resources/batSpritesheet.png'},
+        {id: 'flySpritesheet', src: 'resources/flySpritesheet.png'},
         {id: 'batDeath', src: 'resources/batDeath.png'},
     ]);
     queue.load();
@@ -72,7 +72,7 @@ function queueLoaded(event)
 
     //Add Score
     scoreText = new createjs.Text("Score: " + score.toString(), "36px Arial", "#FFF");
-    scoreText.x = 850;
+    scoreText.x = 820;
     scoreText.y = 10;
     stage.addChild(scoreText);
 
@@ -87,9 +87,9 @@ function queueLoaded(event)
 
     // Create bat spritesheet
     spriteSheet = new createjs.SpriteSheet({
-        "images": [queue.getResult('batSpritesheet')],
-        "frames": {"width": 198, "height": 117},
-        "animations": { "flap": [0,4] }
+        "images": [queue.getResult('flySpritesheet')],
+        "frames": {"width": 123, "height": 100},
+        "animations": { "flap": [0,9] }
     });
 
     // Create bat death spritesheet
@@ -124,7 +124,7 @@ function createEnemy()
     animation.x = enemyXPos;
     animation.y = enemyYPos;
     animation.gotoAndPlay("flap");
-    stage.addChildAt(animation,1);
+    stage.addChildAt(animation,2);
 }
 
 function batDeath()
@@ -193,7 +193,7 @@ function handleMouseDown(event)
     var distY = Math.abs(shotY - spriteY);
 
     // Anywhere in the body or head is a hit - but not the wings
-    if(distX < 30 && distY < 59 )
+    if(distX < 60 && distY < 60 )
     {
     	//Hit
     	stage.removeChild(animation);
@@ -207,7 +207,7 @@ function handleMouseDown(event)
     	enemyXSpeed += 1.5;
 
     	//Create new enemy
-    	var timeToCreate = Math.floor((Math.random()*4000)+500);
+    	var timeToCreate = Math.floor((Math.random()*3000)+100);
 	    setTimeout(createEnemy, timeToCreate);
 
     } else
