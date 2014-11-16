@@ -96,7 +96,7 @@ function queueLoaded(event)
     batDeathSpriteSheet = new createjs.SpriteSheet({
     	"images": [queue.getResult('batDeath')],
     	"frames": {"width": 198, "height" : 148},
-    	"animations": {"die": [0,7, false,1 ] }
+    	"animations": {"die": [0,5, false, 1] }
     });
 
     // Create bat sprite
@@ -124,7 +124,7 @@ function createEnemy()
     animation.x = enemyXPos;
     animation.y = enemyYPos;
     animation.gotoAndPlay("flap");
-    stage.addChildAt(animation,2);
+    stage.addChildAt(animation,1);
 }
 
 function batDeath()
