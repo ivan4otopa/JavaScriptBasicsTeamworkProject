@@ -19,6 +19,7 @@ var gameOverText;
 var gameTimer;
 var gameTime = 0;
 var timerText;
+var firstShot = 0;
 
 window.onload = function()
 {
@@ -179,7 +180,7 @@ function handleMouseMove(event)
 
 function handleMouseDown(event)
 {
-    
+    firstShot = firstShot+1;
    //Play Gunshot sound
     createjs.Sound.play("shot");
 
@@ -218,8 +219,11 @@ function handleMouseDown(event)
     } else {
     	//Miss
     	score -= 5;
+		if (firstShot == 1 ) {
+		score = 0;
+		}
     	scoreText.text = "Score: " + score.toString();
-		if (score < -10) {
+		if (score < 0 && firstShot > 1 ) {
             timerText.text = "GAME OVER";
             stage.addChild(gameOverText);
             stage.removeChild(animation);
@@ -228,6 +232,7 @@ function handleMouseDown(event)
             clearInterval(gameTimer);
             createjs.Sound.stop();
 		}
+
     }
 }
 
