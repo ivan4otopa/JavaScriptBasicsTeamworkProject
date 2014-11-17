@@ -180,7 +180,9 @@ function handleMouseMove(event)
 
 function handleMouseDown(event)
 {
+	//First Shot won't count if missed
     firstShot = firstShot+1;
+	
    //Play Gunshot sound
     createjs.Sound.play("shot");
 
