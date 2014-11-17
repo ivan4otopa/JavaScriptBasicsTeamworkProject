@@ -9,7 +9,7 @@ var stage;
 var animation;
 var deathAnimation;
 var spriteSheet;
-var enemyXPos=100;
+var enemyXPos=200;
 var enemyYPos=100;
 var enemyXSpeed = 1.5;
 var enemyYSpeed = 1.5;
