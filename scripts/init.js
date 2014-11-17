@@ -48,7 +48,7 @@ window.onload = function()
         {id: 'backgroundImage', src: 'resources/background1.jpg'},
         {id: 'crossHair', src: 'resources/crosshair2.png'},
         {id: 'shot', src: 'resources/shot.mp3'},
-        {id: 'background', src: 'resources/countryside.mp3'},
+        {id: 'background', src: 'resources/Fly Mosca.mp3'},
         {id: 'gameOverSound', src: 'resources/gameOver.mp3'},
         {id: 'deathSound', src: 'resources/die.mp3'},
         {id: 'flySpritesheet', src: 'resources/flySpritesheet.png'},
@@ -188,7 +188,7 @@ function handleMouseDown(event)
     var spriteX = Math.round(animation.x);
     var spriteY = Math.round(animation.y);
 
-    // Compute the X and Y distance using absolte value
+    // Compute the X and Y distance using absolute value
     var distX = Math.abs(shotX - spriteX);
     var distY = Math.abs(shotY - spriteY);
 
