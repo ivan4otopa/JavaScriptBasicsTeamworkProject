@@ -2,9 +2,9 @@ var context;
 var queue;
 var WIDTH = 1024;
 var HEIGHT = 768;
-var mouseXPosition;
+/*var mouseXPosition;
 var mouseYPosition;
-var batImage;
+var batImage;*/
 var stage;
 var animation;
 var deathAnimation;
@@ -15,13 +15,17 @@ var enemyXSpeed = 1.5;
 var enemyYSpeed = 1.5;
 var score = 0;
 var scoreText;
+var gameOverText;
 var gameTimer;
 var gameTime = 0;
 var timerText;
-var end = false;
 
 window.onload = function()
 {
+
+    gameOverText = new createjs.Text("GAME OVER", "80px Arial", "#F00");
+    gameOverText.x = 270;
+    gameOverText.y = 300;
     /*
      *      Set up the Canvas with Size and height
      *
@@ -53,7 +57,7 @@ window.onload = function()
         {id: 'gameOverSound', src: 'sounds/gameOver.mp3'},
         {id: 'deathSound', src: 'sounds/die.mp3'},
         {id: 'flySpritesheet', src: 'images/flySpritesheet.png'},
-        {id: 'batDeath', src: 'images/batDeath.png'},
+        {id: 'batDeath', src: 'images/batDeath.png'}
     ]);
     queue.load();
 
@@ -63,12 +67,12 @@ window.onload = function()
      */
     gameTimer = setInterval(updateTime, 1000);
 
-}
+};
 
-function queueLoaded(event)
+function queueLoaded()
 {
     // Add background image
-    var backgroundImage = new createjs.Bitmap(queue.getResult("backgroundImage"))
+    var backgroundImage = new createjs.Bitmap(queue.getResult("backgroundImage"));
     stage.addChild(backgroundImage);
 
     //Add Score
@@ -94,7 +98,7 @@ function queueLoaded(event)
     });
 
     // Create bat death spritesheet
-    batDeathSpriteSheet = new createjs.SpriteSheet({
+        batDeathSpriteSheet = new createjs.SpriteSheet({
     	"images": [queue.getResult('batDeath')],
     	"frames": {"width": 198, "height" : 148},
     	"animations": {"die": [0,5, false, 1] }
@@ -211,32 +215,38 @@ function handleMouseDown(event)
     	var timeToCreate = Math.floor((Math.random()*3000)+100);
 	    setTimeout(createEnemy, timeToCreate);
 
-    } else
-    {
+    } else {
     	//Miss
     	score -= 5;
     	scoreText.text = "Score: " + score.toString();
-		if (score < 0) {
-		end = true;
+		if (score < -10) {
+            timerText.text = "GAME OVER";
+            stage.addChild(gameOverText);
+            stage.removeChild(animation);
+            stage.removeChild(crossHair);
+            var si =createjs.Sound.play("gameOverSound");
+            clearInterval(gameTimer);
+            createjs.Sound.stop();
 		}
-
     }
 }
 
 function updateTime()
 {
 	gameTime += 1;
-	if(gameTime > 120 || end)
+	if(gameTime > 120)
 	{
-		//End Game and Clean up
-		timerText.text = "GAME OVER";
-		stage.removeChild(animation);
-		stage.removeChild(crossHair);
-		var si =createjs.Sound.play("gameOverSound");
-		clearInterval(gameTimer);
-	}
-	else
-	{
+        //End Game and Clean up
+        gameOverText.x = 140;
+        gameOverText.text = "Time's up, score: " + score;
+        stage.addChild(gameOverText);
+        timerText.text = "GAME OVER";
+        stage.removeChild(animation);
+        stage.removeChild(crossHair);
+        var si =createjs.Sound.play("gameOverSound");
+        clearInterval(gameTimer);
+        createjs.Sound.stop();
+	} else {
 		timerText.text = "Time: " + gameTime
 	}
 }
