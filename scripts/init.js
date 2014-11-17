@@ -119,8 +119,8 @@ function queueLoaded(event)
 function createEnemy()
 {
 	animation = new createjs.Sprite(spriteSheet, "flap");
-    animation.regX = 99;
-    animation.regY = 58;
+    animation.regX = 55;
+    animation.regY = 60;
     animation.x = enemyXPos;
     animation.y = enemyYPos;
     animation.gotoAndPlay("flap");
