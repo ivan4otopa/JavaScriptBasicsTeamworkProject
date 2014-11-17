@@ -45,14 +45,14 @@ window.onload = function()
      *
      */
     queue.loadManifest([
-        {id: 'backgroundImage', src: 'resources/background1.jpg'},
-        {id: 'crossHair', src: 'resources/crosshair2.png'},
-        {id: 'shot', src: 'resources/shot.mp3'},
-        {id: 'background', src: 'resources/Fly Mosca.mp3'},
-        {id: 'gameOverSound', src: 'resources/gameOver.mp3'},
-        {id: 'deathSound', src: 'resources/die.mp3'},
-        {id: 'flySpritesheet', src: 'resources/flySpritesheet.png'},
-        {id: 'batDeath', src: 'resources/batDeath.png'},
+        {id: 'backgroundImage', src: 'images/background1.jpg'},
+        {id: 'crossHair', src: 'images/crosshair2.png'},
+        {id: 'shot', src: 'sounds/shot.mp3'},
+        {id: 'background', src: 'sounds/beatle.mp3'},
+        {id: 'gameOverSound', src: 'sounds/gameOver.mp3'},
+        {id: 'deathSound', src: 'sounds/die.mp3'},
+        {id: 'flySpritesheet', src: 'images/flySpritesheet.png'},
+        {id: 'batDeath', src: 'images/batDeath.png'},
     ]);
     queue.load();
 

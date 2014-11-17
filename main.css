@@ -1,7 +1,5 @@
 
 #myCanvas   {
 	cursor: none;
-	border: 10px solid #45FE07;
-	width: 98%;
-	height: 665px;
+	border: 4px solid gray;
 }
