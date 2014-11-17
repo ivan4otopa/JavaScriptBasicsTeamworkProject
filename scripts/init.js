@@ -18,6 +18,7 @@ var scoreText;
 var gameTimer;
 var gameTime = 0;
 var timerText;
+var end = false;
 
 window.onload = function()
 {
@@ -215,6 +216,9 @@ function handleMouseDown(event)
     	//Miss
     	score -= 5;
     	scoreText.text = "Score: " + score.toString();
+		if (score < 0) {
+		end = true;
+		}
 
     }
 }
@@ -222,7 +226,7 @@ function handleMouseDown(event)
 function updateTime()
 {
 	gameTime += 1;
-	if(gameTime > 120)
+	if(gameTime > 120 || end)
 	{
 		//End Game and Clean up
 		timerText.text = "GAME OVER";
