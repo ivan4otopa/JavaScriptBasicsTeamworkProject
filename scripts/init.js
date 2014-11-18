@@ -17,7 +17,7 @@ var score = 0;
 var scoreText;
 var gameOverText;
 var gameTimer;
-var gameTime = 0;
+var gameTime = 110;
 var timerText;
 var firstShot = 0;
 
