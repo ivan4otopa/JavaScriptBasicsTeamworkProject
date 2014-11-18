@@ -253,6 +253,15 @@ function updateTime()
         var si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.setAttribute("id", "link");
+        link.setAttribute("href", "level2.html")
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode("Next Level");
+        btn.appendChild(t);
+        document.getElementById("link").appendChild(btn);
+        btn.setAttribute("id", "level2");
 	} else {
 		timerText.text = "Time: " + gameTime
 	}
