@@ -242,12 +242,11 @@ function updateTime()
         gameOverText.x = 140;
         gameOverText.text = "Next Level, score: " + score;
         stage.addChild(gameOverText);
-        timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
+        stage.removeChild(timerText);
         clearInterval(gameTimer);
         createjs.Sound.stop();
-        createjs.Sound.play("gameOverSound");
         var link = document.createElement("a");
         document.body.appendChild(link);
         link.setAttribute("id", "link");
