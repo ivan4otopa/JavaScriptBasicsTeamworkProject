@@ -231,9 +231,9 @@ function handleMouseDown(event)
             stage.addChild(gameOverText);
             stage.removeChild(animation);
             stage.removeChild(crossHair);
-            var si =createjs.Sound.play("gameOverSound");
             clearInterval(gameTimer);
             createjs.Sound.stop();
+			var si =createjs.Sound.play("gameOverSound");
         }
 
     }
@@ -251,9 +251,9 @@ function updateTime()
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        var si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
+		var si =createjs.Sound.play("gameOverSound");
     } else if(gameTime < 50 && score > 60)
     {
       //End Game
@@ -263,9 +263,9 @@ function updateTime()
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        var win =createjs.Sound.play("winSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
+		var win =createjs.Sound.play("winSound");
 		} else {
         timerText.text = "Time: " + gameTime;
     }
