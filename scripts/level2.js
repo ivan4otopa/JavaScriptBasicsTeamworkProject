@@ -260,7 +260,7 @@ function handleMouseDown(event)
 function updateTime()
 {
     gameTime += 1;
-    if(gameTime = 120)
+    if(gameTime > 120)
     {
         //End Game and Clean up
         gameOverText.x = 140;
