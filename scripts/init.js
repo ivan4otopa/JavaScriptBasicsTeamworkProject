@@ -17,7 +17,7 @@ var score = 0;
 var scoreText;
 var gameOverText;
 var gameTimer;
-var gameTime = 110;
+var gameTime = 0;
 var timerText;
 var firstShot = 0;
 
@@ -241,11 +241,22 @@ function handleMouseDown(event)
 function updateTime()
 {
 	gameTime += 1;
-	if(gameTime > 120)
+	if(gameTime > 20 && score < 50)
+	{  //End Game and Clean up
+        gameOverText.x = 140;
+        gameOverText.text = "Time's up, score: " + score;
+        stage.addChild(gameOverText);
+        timerText.text = "GAME OVER";
+        stage.removeChild(animation);
+        stage.removeChild(crossHair);
+        var si =createjs.Sound.play("gameOverSound");
+        clearInterval(gameTimer);
+        createjs.Sound.stop();
+	}else if(gameTime < 30 && score > 20)
 	{
         //End Game and Clean up
         gameOverText.x = 140;
-        gameOverText.text = "Time's up, score: " + score;
+        gameOverText.text = "Next Level, score: " + score;
         stage.addChild(gameOverText);
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
