@@ -58,7 +58,6 @@ window.onload = function()
         {id: 'gameOverSound', src: 'sounds/gameOver.mp3'},
         {id: 'deathSound', src: 'sounds/die.mp3'},
         {id: 'flySpritesheet', src: 'images/flySpritesheet.png'},
-        {id: 'flySpriteSheet2', src: 'images/flySpriteSheet2.png'},
         {id: 'batDeath', src: 'images/batDeath.png'}
     ]);
     queue.load();
@@ -99,12 +98,6 @@ function queueLoaded()
         "animations": { "flap": [0,9] }
     });
 
-    spriteSheet = new createjs.SpriteSheet({
-        "images": [queue.getResult('flySpritesheet2')],
-        "frames": {"width": 123, "height": 100},
-        "animations": { "flap": [0,9] }
-    });
-
     // Create bat death spritesheet
         batDeathSpriteSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('batDeath')],
@@ -113,8 +106,7 @@ function queueLoaded()
     });
 
     // Create bat sprite
-    createEnemy1();
-    createEnemy2();
+    createEnemy();
 
     // Create crosshair
     crossHair = new createjs.Bitmap(queue.getResult("crossHair"));
@@ -130,22 +122,11 @@ function queueLoaded()
     window.onmousedown = handleMouseDown;
 }
 
-function createEnemy1()
+function createEnemy()
 {
     animation = new createjs.Sprite(spriteSheet, "flap");
     animation.regX = 55;
     animation.regY = 60;
-    animation.x = enemyXPos;
-    animation.y = enemyYPos;
-    animation.gotoAndPlay("flap");
-    stage.addChildAt(animation,1);
-}
-
-function createEnemy2()
-{
-    animation = new createjs.Sprite(spriteSheet, "flap");
-    animation.regX = 500;
-    animation.regY = 350;
     animation.x = enemyXPos;
     animation.y = enemyYPos;
     animation.gotoAndPlay("flap");
