@@ -44,7 +44,7 @@ window.onload = function() {
         {id: 'background', src: 'sounds/beatle.mp3'},
         {id: 'gameOverSound', src: 'sounds/gameOver.mp3'},
         {id: 'deathSound', src: 'sounds/die.mp3'},
-        {id: 'flySpritesheet', src: 'images/flySpritesheet.png'},
+        {id: 'flySpritesheet', src: 'images/dragonfly.png'},
         {id: 'flyDeath', src: 'images/flyDeath.png'}
     ]);
     queue.load();
@@ -78,8 +78,8 @@ function queueLoaded() {
     //create fly spritesheet
     spriteSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('flySpritesheet')],
-        "frames": {"width": 123, "height": 100},
-        "animations": { "flap": [0,9] }
+        "frames": {"width": 129, "height": 95},
+        "animations": { "flap": [0,7] }
     });
 
     // Create fly death spritesheet
