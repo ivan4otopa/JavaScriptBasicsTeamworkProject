@@ -230,9 +230,9 @@ function handleMouseDown(event)
             stage.addChild(gameOverText);
             stage.removeChild(animation);
             stage.removeChild(crossHair);
-            var si =createjs.Sound.play("gameOverSound");
             clearInterval(gameTimer);
             createjs.Sound.stop();
+			var si =createjs.Sound.play("gameOverSound");
 		}
 
     }
@@ -249,21 +249,21 @@ function updateTime()
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        var si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
+		var si =createjs.Sound.play("gameOverSound");
 	}else if(gameTime < 30 && score > 20)
 	{
-        //End Game and Clean up
+        //Go to level 2
         gameOverText.x = 140;
         gameOverText.text = "Next Level, score: " + score;
         stage.addChild(gameOverText);
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
+		var si =createjs.Sound.play("gameOverSound");
         var link = document.createElement("a");
         document.body.appendChild(link);
         link.setAttribute("id", "link");
