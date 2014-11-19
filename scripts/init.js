@@ -164,7 +164,10 @@ function handleMouseDown(event)
 {
 	//First Shot won't count if missed
     firstShot = firstShot+1;
+	
+	//When game ends or go to next level the player can't shoot.
 	if (((gameTime > 20 && score < 50) || score < 0) || (gameTime < 30 && score > 20)) {
+	
 	}else {
 	//Play Gunshot sound
     createjs.Sound.play("shot");
