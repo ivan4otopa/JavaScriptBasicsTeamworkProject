@@ -214,7 +214,7 @@ function handleMouseDown(event)
             stage.removeChild(crossHair);
             clearInterval(gameTimer);
             createjs.Sound.stop();
-            var si =createjs.Sound.play("gameOverSound");
+            createjs.Sound.play("gameOverSound");
         }
 
     }
@@ -233,7 +233,7 @@ function updateTime()
         stage.removeChild(crossHair);
         clearInterval(gameTimer);
         createjs.Sound.stop();
-        var si =createjs.Sound.play("gameOverSound");
+        createjs.Sound.play("gameOverSound");
     }else if(gameTime > 120 && score > 50)
     {
         //Go to level 2
@@ -245,11 +245,11 @@ function updateTime()
         stage.removeChild(crossHair);
         clearInterval(gameTimer);
         createjs.Sound.stop();
-        var si =createjs.Sound.play("gameOverSound");
+        createjs.Sound.play("gameOverSound");
         var link = document.createElement("a");
         document.body.appendChild(link);
         link.setAttribute("id", "link");
-        link.setAttribute("href", "level2.html")
+        link.setAttribute("href", "level2.html");
         var btn = document.createElement("BUTTON");
         var t = document.createTextNode("Next Level");
         btn.appendChild(t);
