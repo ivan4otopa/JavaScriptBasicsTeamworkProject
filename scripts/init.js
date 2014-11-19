@@ -165,65 +165,67 @@ function handleMouseDown(event)
     //First Shot won't count if missed
     firstShot = firstShot+1;
 
-    //Play Gunshot sound
-    createjs.Sound.play("shot");
+	if ((gameTime > 10 && score < 50 || score < 0) || (gameTime > 10 && score > 50)) {
+	}else{
+		//Play Gunshot sound
+		createjs.Sound.play("shot");
 
-    //Increase speed of enemy slightly
-    enemyXSpeed += 1.4;
-    enemyYSpeed += 1.5;
+		//Increase speed of enemy slightly
+		enemyXSpeed += 1.4;
+		enemyYSpeed += 1.5;
 
-    //Obtain Shot position
-    var shotX = Math.round(event.clientX);
-    var shotY = Math.round(event.clientY);
-    var spriteX = Math.round(animation.x);
-    var spriteY = Math.round(animation.y);
+		//Obtain Shot position
+		var shotX = Math.round(event.clientX);
+		var shotY = Math.round(event.clientY);
+		var spriteX = Math.round(animation.x);
+		var spriteY = Math.round(animation.y);
 
-    // Compute the X and Y distance using absolute value
-    var distX = Math.abs(shotX - spriteX);
-    var distY = Math.abs(shotY - spriteY);
+		// Compute the X and Y distance using absolute value
+		var distX = Math.abs(shotX - spriteX);
+		var distY = Math.abs(shotY - spriteY);
 
-    //calculating a hit or a miss
-    if(distX < 60 && distY < 60 )
-    {
-        //Hit
-        stage.removeChild(animation);
-        flyDeath();
-        score += 10;
-        scoreText.text = "Score: " + score.toString();
-        createjs.Sound.play("deathSound");
+		//calculating a hit or a miss
+		if(distX < 60 && distY < 60 )
+		{
+			//Hit
+			stage.removeChild(animation);
+			flyDeath();
+			score += 10;
+			scoreText.text = "Score: " + score.toString();
+			createjs.Sound.play("deathSound");
 
-        //increase speed for new enemy respawn
-        enemyYSpeed += 1.5;
-        enemyXSpeed += 1.5;
+			//increase speed for new enemy respawn
+			enemyYSpeed += 1.5;
+			enemyXSpeed += 1.5;
 
-        //Create new enemy
-        var timeToCreate = Math.floor((Math.random()*3000)+100);
-        setTimeout(createEnemy, timeToCreate);
+			//Create new enemy
+			var timeToCreate = Math.floor((Math.random()*3000)+100);
+			setTimeout(createEnemy, timeToCreate);
 
-    } else {
-        //Miss
-        score -= 5;
-        if (firstShot == 1 ) {
-            score = 0;
-        }
-        scoreText.text = "Score: " + score.toString();
-        if (score < 0 && firstShot > 1 ) {
-            timerText.text = "GAME OVER";
-            stage.addChild(gameOverText);
-            stage.removeChild(animation);
-            stage.removeChild(crossHair);
-            clearInterval(gameTimer);
-            createjs.Sound.stop();
-            createjs.Sound.play("gameOverSound");
-        }
-
+		} else {
+			//Miss
+			score -= 5;
+			if (firstShot == 1 ) {
+				score = 0;
+			}
+			scoreText.text = "Score: " + score.toString();
+			if (score < 0 && firstShot > 1 ) {
+				timerText.text = "GAME OVER";
+				stage.addChild(gameOverText);
+				stage.removeChild(animation);
+				stage.removeChild(crossHair);
+				clearInterval(gameTimer);
+				createjs.Sound.stop();
+				createjs.Sound.play("gameOverSound");
+			}
+		}
     }
 }
 
 function updateTime()
 {
     gameTime += 1;
-    if(gameTime > 120 && score < 50)
+    if(gameTime > 10 && score < 50)
     {  //End Game and Clear field
         gameOverText.x = 140;
         gameOverText.text = "Time's up, score: " + score;
@@ -234,7 +236,7 @@ function updateTime()
         clearInterval(gameTimer);
         createjs.Sound.stop();
         createjs.Sound.play("gameOverSound");
-    }else if(gameTime > 120 && score > 50)
+    }else if(gameTime > 10 && score > 50)
     {
         //Go to level 2
         gameOverText.x = 140;
