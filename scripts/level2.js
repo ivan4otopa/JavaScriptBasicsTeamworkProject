@@ -225,7 +225,7 @@ function handleMouseDown(event)
 function updateTime()
 {
     gameTime += 1;
-    if(gameTime > 10 && score < 50)
+    if(gameTime > 60 && score < 50)
     {  //End Game and Clear field
         gameOverText.x = 140;
         gameOverText.text = "Time's up, score: " + score;
@@ -236,7 +236,7 @@ function updateTime()
         clearInterval(gameTimer);
         createjs.Sound.stop();
         var si =createjs.Sound.play("gameOverSound");
-    }else if(gameTime > 10 && score > 50)
+    }else if(gameTime > 60 && score > 50)
     {
         //beat game
         gameOverText.x = 140;
