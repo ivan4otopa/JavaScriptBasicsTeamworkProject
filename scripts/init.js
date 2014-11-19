@@ -164,8 +164,9 @@ function handleMouseDown(event)
 {
 	//First Shot won't count if missed
     firstShot = firstShot+1;
-	
-   //Play Gunshot sound
+	if (((gameTime > 20 && score < 50) || score < 0) || (gameTime < 30 && score > 20)) {
+	}else {
+	//Play Gunshot sound
     createjs.Sound.play("shot");
 
     //Increase speed of enemy slightly
@@ -218,6 +219,8 @@ function handleMouseDown(event)
 		}
 
     }
+	}
+   
 }
 
 function updateTime()
