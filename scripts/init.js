@@ -76,17 +76,17 @@ function queueLoaded() {
     createjs.Sound.play("background", {loop: -1});
 
     //create fly spritesheet
-        spriteSheet = new createjs.SpriteSheet({
+    spriteSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('flySpritesheet')],
         "frames": {"width": 123, "height": 100},
         "animations": { "flap": [0,9] }
     });
 
     // Create fly death spritesheet
-        flyDeathSpriteSheet = new createjs.SpriteSheet({
-    	"images": [queue.getResult('flyDeath')],
-    	"frames": {"width": 198, "height" : 148},
-    	"animations": {"die": [0,5, false, 1] }
+    flyDeathSpriteSheet = new createjs.SpriteSheet({
+        "images": [queue.getResult('flyDeath')],
+        "frames": {"width": 198, "height" : 148},
+        "animations": {"die": [0,5, false, 1] }
     });
 
     //create fly sprite
@@ -108,7 +108,7 @@ function queueLoaded() {
 
 function createEnemy()
 {
-	animation = new createjs.Sprite(spriteSheet, "flap");
+    animation = new createjs.Sprite(spriteSheet, "flap");
     animation.regX = 55;
     animation.regY = 60;
     animation.x = enemyXPos;
@@ -119,37 +119,37 @@ function createEnemy()
 
 function flyDeath()
 {
-	deathAnimation = new createjs.Sprite(flyDeathSpriteSheet, "die");
-  deathAnimation.regX = 99;
-  deathAnimation.regY = 58;
-  deathAnimation.x = enemyXPos;
-  deathAnimation.y = enemyYPos;
-  deathAnimation.gotoAndPlay("die");
-  stage.addChild(deathAnimation);
+    deathAnimation = new createjs.Sprite(flyDeathSpriteSheet, "die");
+    deathAnimation.regX = 99;
+    deathAnimation.regY = 58;
+    deathAnimation.x = enemyXPos;
+    deathAnimation.y = enemyYPos;
+    deathAnimation.gotoAndPlay("die");
+    stage.addChild(deathAnimation);
 }
 
 function tickEvent()
 {
-	//keep enemy in playfield and move it
-	if(enemyXPos < WIDTH && enemyXPos > 0)
-	{
-		enemyXPos += enemyXSpeed;
-	} else 
-	{
-		enemyXSpeed = enemyXSpeed * (-1);
-		enemyXPos += enemyXSpeed;
-	}
-	if(enemyYPos < HEIGHT && enemyYPos > 0)
-	{
-		enemyYPos += enemyYSpeed;
-	} else
-	{
-		enemyYSpeed = enemyYSpeed * (-1);
-		enemyYPos += enemyYSpeed;
-	}
+    //keep enemy in playfield and move it
+    if(enemyXPos < WIDTH && enemyXPos > 0)
+    {
+        enemyXPos += enemyXSpeed;
+    } else
+    {
+        enemyXSpeed = enemyXSpeed * (-1);
+        enemyXPos += enemyXSpeed;
+    }
+    if(enemyYPos < HEIGHT && enemyYPos > 0)
+    {
+        enemyYPos += enemyYSpeed;
+    } else
+    {
+        enemyYSpeed = enemyYSpeed * (-1);
+        enemyYPos += enemyYSpeed;
+    }
 
-	animation.x = enemyXPos;
-	animation.y = enemyYPos;
+    animation.x = enemyXPos;
+    animation.y = enemyYPos;
 }
 
 
@@ -162,14 +162,10 @@ function handleMouseMove(event)
 
 function handleMouseDown(event)
 {
-	//First Shot won't count if missed
+    //First Shot won't count if missed
     firstShot = firstShot+1;
-	
-	//When game ends or go to next level the player can't shoot.
-	if (((gameTime > 20 && score < 50) || score < 0) || (gameTime < 30 && score > 20)) {
-	
-	}else {
-	//Play Gunshot sound
+
+    //Play Gunshot sound
     createjs.Sound.play("shot");
 
     //Increase speed of enemy slightly
@@ -189,48 +185,46 @@ function handleMouseDown(event)
     //calculating a hit or a miss
     if(distX < 60 && distY < 60 )
     {
-    	//Hit
-    	stage.removeChild(animation);
-    	flyDeath();
-    	score += 10;
-    	scoreText.text = "Score: " + score.toString();
-    	createjs.Sound.play("deathSound");
-    	
-        //increase speed for new enemy respawn
-    	enemyYSpeed += 1.5;
-    	enemyXSpeed += 1.5;
+        //Hit
+        stage.removeChild(animation);
+        flyDeath();
+        score += 10;
+        scoreText.text = "Score: " + score.toString();
+        createjs.Sound.play("deathSound");
 
-    	//Create new enemy
-    	var timeToCreate = Math.floor((Math.random()*3000)+100);
-	    setTimeout(createEnemy, timeToCreate);
+        //increase speed for new enemy respawn
+        enemyYSpeed += 1.5;
+        enemyXSpeed += 1.5;
+
+        //Create new enemy
+        var timeToCreate = Math.floor((Math.random()*3000)+100);
+        setTimeout(createEnemy, timeToCreate);
 
     } else {
-    	//Miss
-    	score -= 5;
-		if (firstShot == 1 ) {
-		score = 0;
-		}
-    	scoreText.text = "Score: " + score.toString();
-		if (score < 0 && firstShot > 1 ) {
+        //Miss
+        score -= 5;
+        if (firstShot == 1 ) {
+            score = 0;
+        }
+        scoreText.text = "Score: " + score.toString();
+        if (score < 0 && firstShot > 1 ) {
             timerText.text = "GAME OVER";
             stage.addChild(gameOverText);
             stage.removeChild(animation);
             stage.removeChild(crossHair);
             clearInterval(gameTimer);
             createjs.Sound.stop();
-			var si =createjs.Sound.play("gameOverSound");
-		}
+            var si =createjs.Sound.play("gameOverSound");
+        }
 
     }
-	}
-   
 }
 
 function updateTime()
 {
-	gameTime += 1;
-	if(gameTime > 20 && score < 50)
-	{  //End Game and Clear field
+    gameTime += 1;
+    if(gameTime > 120 && score < 50)
+    {  //End Game and Clear field
         gameOverText.x = 140;
         gameOverText.text = "Time's up, score: " + score;
         stage.addChild(gameOverText);
@@ -239,9 +233,9 @@ function updateTime()
         stage.removeChild(crossHair);
         clearInterval(gameTimer);
         createjs.Sound.stop();
-		var si =createjs.Sound.play("gameOverSound");
-	}else if(gameTime < 30 && score > 20)
-	{
+        var si =createjs.Sound.play("gameOverSound");
+    }else if(gameTime > 120 && score > 50)
+    {
         //Go to level 2
         gameOverText.x = 140;
         gameOverText.text = "Next Level, score: " + score;
@@ -251,7 +245,7 @@ function updateTime()
         stage.removeChild(crossHair);
         clearInterval(gameTimer);
         createjs.Sound.stop();
-		var si =createjs.Sound.play("gameOverSound");
+        var si =createjs.Sound.play("gameOverSound");
         var link = document.createElement("a");
         document.body.appendChild(link);
         link.setAttribute("id", "link");
@@ -261,7 +255,7 @@ function updateTime()
         btn.appendChild(t);
         document.getElementById("link").appendChild(btn);
         btn.setAttribute("id", "level2");
-	} else {
-		timerText.text = "Time: " + gameTime
-	}
+    } else {
+        timerText.text = "Time: " + gameTime
+    }
 }
