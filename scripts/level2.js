@@ -211,8 +211,8 @@ function handleMouseDown(event)
         createjs.Sound.play("deathSound");
         
         //Make it harder next time
-        enemyYSpeed += 1.5;
-        enemyXSpeed += 1.5;
+        enemyYSpeed += 3.5;
+        enemyXSpeed += 2.4;
 
         //Create new enemy
         var timeToCreate = Math.floor((Math.random()*3000)+100);
@@ -241,7 +241,7 @@ function handleMouseDown(event)
 function updateTime()
 {
     gameTime += 1;
-    if(gameTime > 120)
+    if(gameTime > 50 && score < 60)
     {
         //End Game and Clean up
         gameOverText.x = 140;
@@ -253,7 +253,20 @@ function updateTime()
         var si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
-    } else {
-        timerText.text = "Time: " + gameTime
+    } else if(gameTime < 50 && score > 60)
+    {
+      //End Game
+        gameOverText.x = 140;
+        gameOverText.text = "YOU WIN, score: " + score;
+        stage.addChild(gameOverText);
+        timerText.text = "GAME OVER";
+        stage.removeChild(animation);
+        stage.removeChild(crossHair);
+        var si =createjs.Sound.play("gameOverSound");
+        clearInterval(gameTimer);
+        createjs.Sound.stop();
+		} else {
+        timerText.text = "Time: " + gameTime;
     }
 }
+
