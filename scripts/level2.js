@@ -56,6 +56,7 @@ window.onload = function()
         {id: 'shot', src: 'sounds/shot.mp3'},
         {id: 'background', src: 'sounds/beatle.mp3'},
         {id: 'gameOverSound', src: 'sounds/gameOver.mp3'},
+		{id: 'winSound', src: 'sounds/winSound.mp3'},
         {id: 'deathSound', src: 'sounds/die.mp3'},
         {id: 'flySpritesheet', src: 'images/flySpritesheet.png'},
         {id: 'batDeath', src: 'images/batDeath.png'}
@@ -262,7 +263,7 @@ function updateTime()
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        var si =createjs.Sound.play("gameOverSound");
+        var win =createjs.Sound.play("winSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
 		} else {

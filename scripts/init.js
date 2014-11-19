@@ -261,7 +261,7 @@ function updateTime()
         timerText.text = "GAME OVER";
         stage.removeChild(animation);
         stage.removeChild(crossHair);
-        var si =createjs.Sound.play("gameOverSound");
+        si =createjs.Sound.play("gameOverSound");
         clearInterval(gameTimer);
         createjs.Sound.stop();
         var link = document.createElement("a");
