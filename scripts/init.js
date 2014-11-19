@@ -165,7 +165,7 @@ function handleMouseDown(event)
     //First Shot won't count if missed
     firstShot = firstShot+1;
 
-	if ((gameTime > 10 && score < 50 || score < 0) || (gameTime > 10 && score > 50)) {
+	if ((gameTime > 60 && score < 50 || score < 0) || (gameTime > 60 && score > 50)) {
 	}else{
 		//Play Gunshot sound
 		createjs.Sound.play("shot");
